@@ -1,0 +1,15 @@
+OPTION(BUILD_SHARED_LIBS "Build shared libraries." ON)
+SET(BUILD_LaserLib_SHARED ${BUILD_SHARED_LIBS})
+
+OPTION(USE_OPENMP "Use OpenMP multithreading." OFF)
+SET(LaserLib_USE_OPENMP ${USE_OPENMP})
+
+OPTION(USE_PYTHON "Use Python." ON)
+SET(LaserLib_USE_PYTHON ${USE_PYTHON})
+
+OPTION(USE_PCL "Use PCL." OFF)
+SET(LaserLib_USE_PCL ${USE_PCL})
+
+OPTION(USE_Flann "Use Flann." OFF)
+SET(LaserLib_USE_FLANN ${USE_Flann})
+

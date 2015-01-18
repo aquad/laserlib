@@ -1,0 +1,4 @@
+#cmakedefine LaserLib_USE_OPENMP
+#cmakedefine LaserLib_USE_PYTHON
+#cmakedefine LaserLib_USE_PCL
+#cmakedefine LaserLib_USE_FLANN

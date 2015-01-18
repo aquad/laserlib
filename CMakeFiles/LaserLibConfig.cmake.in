@@ -1,0 +1,47 @@
+#-----------------------------------------------------------------------------
+#
+# LaserLibConfig.cmake - LaserLib CMake configuration file for external projects.
+#
+# This file is configured by LaserLib and used by the UseLaserLib.cmake module
+# to load LaserLib's settings for an external project.
+@LaserLib_CONFIG_INSTALL_ONLY@
+
+# The LaserLib include file directories.
+SET(LaserLib_INCLUDE_DIRS "@LaserLib_INCLUDE_DIRS_CONFIG@")
+
+# The LaserLib library directories.
+SET(LaserLib_LIBRARY_DIRS "@LaserLib_LIBRARY_DIRS_CONFIG@")
+
+# The LaserLib binary executable directories.  Note that if
+# LaserLib_CONFIGURATION_TYPES is set (see below) then these directories
+# will be the parent directories under which there will be a directory
+# of runtime binaries for each configuration type.
+SET(LaserLib_EXECUTABLE_DIRS "@LaserLib_EXECUTABLE_DIRS_CONFIG@")
+
+# The LaserLib runtime library directories.  Note that if
+# LaserLib_CONFIGURATION_TYPES is set (see below) then these directories
+# will be the parent directories under which there will be a directory
+# of runtime libraries for each configuration type.
+SET(LaserLib_RUNTIME_LIBRARY_DIRS "@LaserLib_RUNTIME_LIBRARY_DIRS_CONFIG@")
+
+# The runtime library path variable name e.g. LD_LIBRARY_PATH,
+# this environment variable should be set to LaserLib_RUNTIME_LIBRARY_DIRS
+SET(LaserLib_RUNTIME_PATH_VAR_NAME "@SHARED_LIBRARY_PATH_VAR_NAME@")
+
+# The C and C++ flags added by LaserLib to the cmake-configured flags.
+SET(LaserLib_REQUIRED_C_FLAGS "@LaserLib_REQUIRED_C_FLAGS@")
+SET(LaserLib_REQUIRED_CXX_FLAGS "@LaserLib_REQUIRED_CXX_FLAGS@")
+SET(LaserLib_REQUIRED_EXE_LINKER_FLAGS "@LaserLib_REQUIRED_EXE_LINKER_FLAGS@")
+SET(LaserLib_REQUIRED_SHARED_LINKER_FLAGS "@LaserLib_REQUIRED_SHARED_LINKER_FLAGS@")
+SET(LaserLib_REQUIRED_MODULE_LINKER_FLAGS "@LaserLib_REQUIRED_MODULE_LINKER_FLAGS@")
+
+# The LaserLib version number
+SET(LaserLib_MAJOR_VERSION "@LaserLib_MAJOR_VERSION@")
+SET(LaserLib_MINOR_VERSION "@LaserLib_MINOR_VERSION@")
+SET(LaserLib_BUILD_VERSION "@LaserLib_BUILD_VERSION@")
+
+# The location of the UseLaserLib.cmake file.
+SET(LaserLib_USE_FILE "@LaserLib_USE_FILE@")
+
+# LaserLib Configuration options.
+SET(LaserLib_BUILD_SHARED_LIBS "@BUILD_SHARED_LIBS@")

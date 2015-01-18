@@ -1,0 +1,26 @@
+SET( PROJECT "DataStore" )
+SET ( TARGET_NAME Laser${PROJECT} )
+SET( dir ${SOURCE_CODE_BASE_DIR}/${PROJECT} )
+
+FILE( GLOB includes ${dir}/*.h)
+FILE( GLOB source ${dir}/*.cpp)
+
+IF( NOT LaserLib_USE_FLANN )
+  FILE( GLOB flann_includes ${dir}/FlannKDTree.h )
+  LIST( REMOVE_ITEM includes ${flann_includes} )
+ENDIF()
+
+SOURCE_GROUP( ${PROJECT} FILES ${includes} ${source})
+
+ADD_LIBRARY( ${TARGET_NAME} ${LaserLib_LIBRARY_TYPE} ${includes} ${source} )
+SET_TARGET_PROPERTIES( ${TARGET_NAME} PROPERTIES ${LaserLib_LIBRARY_PROPERTIES} )
+TARGET_LINK_LIBRARIES(${TARGET_NAME} ${FLANN_LIBRARY})
+
+# install
+INSTALL( FILES ${includes} DESTINATION ${CMAKE_INSTALL_PREFIX}/${LaserLib_INSTALL_INCLUDE_DIR}/${PROJECT} )
+INSTALL(
+    TARGETS ${TARGET_NAME}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/${LaserLib_INSTALL_BIN_DIR} COMPONENT Runtime     # .exe, .dll
+    LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/${LaserLib_INSTALL_LIB_DIR} COMPONENT Runtime     # .so, mod.dll
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/${LaserLib_INSTALL_LIB_DIR} COMPONENT Development # .a, .lib
+)
