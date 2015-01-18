@@ -14,6 +14,9 @@ It consists of:
 - Knn classification
 - Affinity propagation clustering
 
+The best documentation is in the python interfaces, which largely mirror the c++ ones.
+http://www-personal.acfr.usyd.edu.au/a.quadros/LaserPy/index.html
+
 Dependencies
 ------------
 
