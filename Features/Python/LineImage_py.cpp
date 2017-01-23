@@ -37,6 +37,7 @@
 
 using namespace Eigen;
 using namespace boost::python;
+using pyarg = boost::python::arg;
 
 
 void export_LineImage()
@@ -47,8 +48,8 @@ void export_LineImage()
 
             .def( "__init__", boost::python::make_constructor( &ComputeLineImage_py_constructor,
                                                                default_call_policies(),
-                                                               (arg("params"), arg("P"), arg("id"), arg("D"), arg("w"),
-                                                                arg("pcaResults"), arg("db"), arg("image"), arg("nThreads")=1) ) )
+                                                               (pyarg("params"), pyarg("P"), pyarg("id"), pyarg("D"), pyarg("w"),
+                                                                pyarg("pcaResults"), pyarg("db"), pyarg("image"), pyarg("nThreads")=1) ) )
 
 
             .def("setObjectMask", &ComputeLineImage_py::setObjectMask_py,
