@@ -24,6 +24,7 @@
 #ifndef SELECTOR_PY_HEADER_GUARD
 #define SELECTOR_PY_HEADER_GUARD
 
+#include "../export.h"
 #include <Python.h>
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 #include <numpy/arrayobject.h>
@@ -34,7 +35,7 @@
 
 
 //still pure virtual
-class Selector_py : virtual public Selector
+class LASERLIB_DATASTORE_EXPORT Selector_py : virtual public Selector
 {
 public:
     Selector_py(){}
@@ -53,7 +54,7 @@ public:
 
 //needed to have a python binding for pure virtual Selector,
 // so we can downcast derived classes automatically.
-struct Selector_callback : public Selector
+struct LASERLIB_DATASTORE_EXPORT Selector_callback : public Selector
 {
     // constructor storing initial self parameter
     Selector_callback(PyObject *p) : self(p) {}
@@ -79,7 +80,7 @@ struct Selector_callback : public Selector
 
 
 //this class allows a SelectRegion function to be defined in python, for use in c++
-class Selector_from_py : public Selector
+class LASERLIB_DATASTORE_EXPORT Selector_from_py : public Selector
 {
 public:
     Selector_from_py()
@@ -104,7 +105,7 @@ private:
 
 //needed to have a python binding for pure virtual Selector_from_py,
 // so we can downcast derived classes automatically.
-struct Selector_from_py_callback : public Selector_from_py
+struct LASERLIB_DATASTORE_EXPORT Selector_from_py_callback : public Selector_from_py
 {
     // constructor storing initial self parameter
     Selector_from_py_callback(PyObject *p) : self(p) {}

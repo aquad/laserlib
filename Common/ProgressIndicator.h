@@ -27,12 +27,13 @@
 #ifndef PROGRESS_INDICATOR_HEADER_GUARD
 #define PROGRESS_INDICATOR_HEADER_GUARD
 
+#include "export.h"
 #include <boost/shared_ptr.hpp>
 
 class ProgressIndicatorImpl;
 
 
-class ProgressIndicator
+class LASERLIB_COMMON_EXPORT ProgressIndicator
 {
 public:
     ProgressIndicator(int total, int _printPeriod);

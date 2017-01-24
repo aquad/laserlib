@@ -24,6 +24,7 @@
 #ifndef LINE_IMAGE_PY
 #define LINE_IMAGE_PY
 
+#include "../export.h"
 #include <Python.h>
 #include <boost/shared_ptr.hpp>
 //#include <boost/python/overloads.hpp>
@@ -34,7 +35,7 @@
 /*!
 Compute line images (python interface).
 */
-class ComputeLineImage_py : public ComputeLineImage
+class LASERLIB_FEATURES_EXPORT ComputeLineImage_py : public ComputeLineImage
 {
 public:
     ComputeLineImage_py( LineImageParams& params, Mat3<double>::type& P,
@@ -50,16 +51,17 @@ private:
 };
 
 
-boost::shared_ptr<ComputeLineImage_py> ComputeLineImage_py_constructor(
+LASERLIB_FEATURES_EXPORT boost::shared_ptr<ComputeLineImage_py> ComputeLineImage_py_constructor(
         PyObject* params_py, PyObject* P_py, PyObject* id_py,
         PyObject* D_py, PyObject* w_py, PyObject* pcaResults_py,
         PyObject* db_pyobj, VeloRangeImage& image, int nThreads=1 );
+LASERLIB_FEATURES_EXTERN template ComputeLineImage_py const volatile * LASERLIB_FEATURES_IMPORT boost::get_pointer(ComputeLineImage_py const volatile *);
 
 //BOOST_PYTHON_FUNCTION_OVERLOADS(ComputeLineImage_constructor_overloads, ComputeLineImage_py_constructor, 8, 9)
 
 
 //! Construct a LineImageParams object from a python radial_feature.line_image.lineImageParams() class instance
-struct LineImageParams_py : LineImageParams
+struct LASERLIB_FEATURES_EXPORT LineImageParams_py : LineImageParams
 {
     LineImageParams_py( PyObject* params );
 };

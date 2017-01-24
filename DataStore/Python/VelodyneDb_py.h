@@ -24,6 +24,7 @@
 #ifndef VELODYNE_DB_PY
 #define VELODYNE_DB_PY
 
+#include "../export.h"
 #include <Python.h>
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 #include <numpy/arrayobject.h>
@@ -31,7 +32,7 @@
 #include "DataStore/VelodyneDb.h"
 
 
-struct VelodyneDb_py : VelodyneDb
+struct LASERLIB_DATASTORE_EXPORT VelodyneDb_py : VelodyneDb
 {
     VelodyneDb_py( PyObject* db_py )
     {

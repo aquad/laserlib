@@ -25,6 +25,7 @@
 #ifndef VELODYNE_RANGE_IMAGE_PY
 #define VELODYNE_RANGE_IMAGE_PY
 
+#include "../export.h"
 #include <Python.h>
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 #include <numpy/ndarraytypes.h>
@@ -35,7 +36,7 @@
 class VelodyneDb;
 
 
-class VeloRangeImage_py : public VeloRangeImage
+class LASERLIB_DATASTORE_EXPORT VeloRangeImage_py : public VeloRangeImage
 {
 public:
     VeloRangeImage_py(int xRes, int maxPointsPerPixel, VelodyneDb& db);
@@ -115,8 +116,9 @@ public:
 };
 
 
-boost::shared_ptr<VeloRangeImage_py> VeloRangeImage_py_constructor(
+LASERLIB_DATASTORE_EXPORT boost::shared_ptr<VeloRangeImage_py> VeloRangeImage_py_constructor(
         int xRes, int maxPointsPerPixel, PyObject* db_pyobj);
+LASERLIB_DATASTORE_EXTERN template VeloRangeImage_py const volatile * LASERLIB_DATASTORE_IMPORT boost::get_pointer(VeloRangeImage_py const volatile *);
 
 
 
@@ -135,7 +137,7 @@ To do simple occupancy checking of a set of 3D 'model' points:
 Returns a (k,) array of int32, specifying the indices of nearest neighbours in the scan.
 (note- no associated 'pure c++' function)
 */
-PyObject* NNImageQuery_py( VeloRangeImage& image, PyObject* image2dPoints, PyObject* queryPoints);
+LASERLIB_DATASTORE_EXPORT PyObject* NNImageQuery_py( VeloRangeImage& image, PyObject* image2dPoints, PyObject* queryPoints);
 
 
 #endif //VELODYNE_RANGE_IMAGE_PY

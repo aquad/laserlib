@@ -24,6 +24,7 @@
 #ifndef LINE_IMAGE_HEADER_GUARD
 #define LINE_IMAGE_HEADER_GUARD
 
+#include "export.h"
 #define EIGEN_DEFAULT_TO_ROW_MAJOR 1
 #include <Eigen/Dense>
 
@@ -35,7 +36,7 @@
 #include "OccLine.h"
 
 
-struct LineImageParams : OccLineParams
+struct LASERLIB_FEATURES_EXPORT LineImageParams : OccLineParams
 {
     std::vector<int> angularSections;
     int nLines;
@@ -45,7 +46,7 @@ struct LineImageParams : OccLineParams
 };
 
 
-class ComputeLineImage
+class LASERLIB_FEATURES_EXPORT ComputeLineImage
 {
 public:
     ComputeLineImage( LineImageParams& params, Mat3<double>::type& P,

@@ -24,6 +24,7 @@
 #ifndef GRAPH_TRAVERSER_PY
 #define GRAPH_TRAVERSER_PY
 
+#include "../export.h"
 #include <Python.h>
 #include <boost/shared_ptr.hpp>
 
@@ -32,33 +33,34 @@
 #include "Selector_py.h"
 
 
-void Get4Neighs_py( PyObject* neighs, PyObject* graph, PyObject* P, double rad );
-void Get4NeighsClosest_py( PyObject* neighs, PyObject* graph );
-void Get4NeighsValid_py( PyObject* neighs, PyObject* graph, PyObject* P, PyObject* valid, double rad );
+LASERLIB_DATASTORE_EXPORT void Get4Neighs_py( PyObject* neighs, PyObject* graph, PyObject* P, double rad );
+LASERLIB_DATASTORE_EXPORT void Get4NeighsClosest_py( PyObject* neighs, PyObject* graph );
+LASERLIB_DATASTORE_EXPORT void Get4NeighsValid_py( PyObject* neighs, PyObject* graph, PyObject* P, PyObject* valid, double rad );
 
-void ConvexSegment_py( PyObject* segs, PyObject* convex, PyObject* graph, PyObject* surfNorms, double eta3 );
+LASERLIB_DATASTORE_EXPORT void ConvexSegment_py( PyObject* segs, PyObject* convex, PyObject* graph, PyObject* surfNorms, double eta3 );
 
 
 
-class GraphSphereSelector_py : public GraphSphereSelector, public Selector_py
+class LASERLIB_DATASTORE_EXPORT GraphSphereSelector_py : public GraphSphereSelector, public Selector_py
 {
 public:
     GraphSphereSelector_py( Graph& graph, Mat3<double>::type& P, double rad )
         :   GraphSphereSelector(graph, P, rad) {}
 };
 
-boost::shared_ptr<GraphSphereSelector_py> GraphSphereSelector_py_constructor( PyObject* graph_py, PyObject* P_py, double rad );
+LASERLIB_DATASTORE_EXPORT boost::shared_ptr<GraphSphereSelector_py> GraphSphereSelector_py_constructor( PyObject* graph_py, PyObject* P_py, double rad );
+LASERLIB_DATASTORE_EXTERN template GraphSphereSelector_py const volatile * LASERLIB_DATASTORE_IMPORT boost::get_pointer(GraphSphereSelector_py const volatile *);
 
 
-
-class PreFourNeighSelector_py : public PreFourNeighSelector, public Selector_py
+class LASERLIB_DATASTORE_EXPORT PreFourNeighSelector_py : public PreFourNeighSelector, public Selector_py
 {
 public:
     PreFourNeighSelector_py( Graph& neighs_all )
         :   PreFourNeighSelector( neighs_all ) {}
 };
 
-boost::shared_ptr<PreFourNeighSelector_py> PreFourNeighSelector_py_constructor( PyObject* neighs_all_py );
+LASERLIB_DATASTORE_EXPORT boost::shared_ptr<PreFourNeighSelector_py> PreFourNeighSelector_py_constructor( PyObject* neighs_all_py );
+LASERLIB_DATASTORE_EXTERN template PreFourNeighSelector_py const volatile * LASERLIB_DATASTORE_IMPORT boost::get_pointer(PreFourNeighSelector_py const volatile *);
 
 
 

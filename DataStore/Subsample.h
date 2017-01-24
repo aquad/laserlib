@@ -24,6 +24,7 @@
 #ifndef SUB_SAMPLE_HEADER_GUARD
 #define SUB_SAMPLE_HEADER_GUARD
 
+#include "export.h"
 #include <vector>
 #include "Common/ArrayTypes.h"
 #include "Selector.h"
@@ -36,14 +37,14 @@ removed, the centre point added to the output sample, and the next non-removed c
 \param nTotal- total number of points that was given to 'sel'.
 \param sample- (output) subsampled points.
 */
-void SubSampleEven( Selector& sel, int nTotal, std::vector<int>& sample );
+LASERLIB_DATASTORE_EXPORT void SubSampleEven( Selector& sel, int nTotal, std::vector<int>& sample );
 
 
 
 /*! Evenly subsample keypoints by region selection.
 As in SubSampleEven, but 'keys' are iterated over as centre points.
 */
-void SubSampleKeysEvenly( Selector& sel, int nTotal, Vect<int>::type& keys, std::vector<int>& sample );
+LASERLIB_DATASTORE_EXPORT void SubSampleKeysEvenly( Selector& sel, int nTotal, Vect<int>::type& keys, std::vector<int>& sample );
 
 
 
@@ -59,7 +60,7 @@ it will be 0 where there is no max.
 \param maxBy- (output) how much each maximum was larger than its surrounds.
 This is 0 where there is no maximum. Size (nTotal,)
 */
-void LocalMax( Selector& sel, int nTotal, Vect<int>::type& items, Vect<double>::type& val, Vect<double>::type maxBy );
+LASERLIB_DATASTORE_EXPORT void LocalMax( Selector& sel, int nTotal, Vect<int>::type& items, Vect<double>::type& val, Vect<double>::type maxBy );
 
 
 
@@ -69,7 +70,7 @@ void LocalMax( Selector& sel, int nTotal, Vect<int>::type& items, Vect<double>::
 \param thresh- if the dot product of two surface normals is above this, a point is removed (cos(thresh) is min angle difference).
 \param sample- (output) subsampled points.
 */
-void SubsampleBySurfNorm( Selector& sel, int nTotal, Vect<int>::type& items, Mat3<double>::type& sn,
+LASERLIB_DATASTORE_EXPORT void SubsampleBySurfNorm( Selector& sel, int nTotal, Vect<int>::type& items, Mat3<double>::type& sn,
                          double thresh, std::vector<int>& sample );
 
 

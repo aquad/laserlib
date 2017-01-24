@@ -24,6 +24,7 @@
 #ifndef OCC_IMAGE_PY
 #define OCC_IMAGE_PY
 
+#include "../export.h"
 #include <Python.h>
 #include <boost/python.hpp>
 #include <boost/shared_ptr.hpp>
@@ -33,7 +34,7 @@
 
 
 //! Compute occupancy line (python interface).
-class OccLine_py : public OccLine
+class LASERLIB_FEATURES_EXPORT OccLine_py : public OccLine
 {
 public:
     OccLine_py( OccLineParams& params, Mat3<double>::type& P, Vect<unsigned char>::type& id,
@@ -56,14 +57,15 @@ public:
 };
 
 
-boost::shared_ptr<OccLine_py> OccLine_py_constructor(
+LASERLIB_FEATURES_EXPORT boost::shared_ptr<OccLine_py> OccLine_py_constructor(
         PyObject* params_py, PyObject* P_py, PyObject* id_py,
         PyObject* D_py, PyObject* w_py, PyObject* pcaResults_py,
         PyObject* db_pyobj, VeloRangeImage& image );
+LASERLIB_FEATURES_EXTERN template OccLine_py const volatile * LASERLIB_FEATURES_IMPORT boost::get_pointer(OccLine_py const volatile *);
 
 
 //! Construct a OccLineParams object from a python radial_feature.line_image.OccLineParams() class instance
-struct OccLineParams_py : OccLineParams
+struct LASERLIB_FEATURES_EXPORT OccLineParams_py : OccLineParams
 {
     OccLineParams_py( PyObject* params );
 };

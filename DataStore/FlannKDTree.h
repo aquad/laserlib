@@ -34,6 +34,7 @@
 #ifndef FLANN_KD_TREE
 #define FLANN_KD_TREE
 
+#include "export.h"
 #include <vector>
 #include <string>
 #include "Selector.h"
@@ -74,13 +75,15 @@ private:
     int knn_; //!< SelectNumber selects k neighbours only
 };
 
+template class FlannKDTree<double>;
+template class FlannKDTree<float>;
 
 
 template <typename T>
 FlannKDTree<T>::FlannKDTree( PointType& P, T rad )
     :   P_(P),
         rad_(rad),
-        ind_( flann::Matrix<T>(P_.data(), P_.rows(), P_.cols()), 
+        ind_( flann::Matrix<T>(P_.data(), P_.rows(), P_.cols()),
               flann::KDTreeSingleIndexParams(10,true) ),
         searchParams_( flann::FLANN_CHECKS_UNLIMITED, 0, true ),
         knn_(1)
@@ -93,7 +96,7 @@ template <typename T>
 FlannKDTree<T>::FlannKDTree( PointType& P, T rad, std::string& filename )
     :   P_(P),
         rad_(rad),
-        ind_( flann::Matrix<T>(P_.data(), P_.rows(), P_.cols()), 
+        ind_( flann::Matrix<T>(P_.data(), P_.rows(), P_.cols()),
               flann::SavedIndexParams(filename) ),
         searchParams_( flann::FLANN_CHECKS_UNLIMITED, 0, true ),
         knn_(1)

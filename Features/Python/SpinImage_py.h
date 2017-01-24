@@ -24,6 +24,7 @@
 #ifndef SPIN_IMAGE_PY
 #define SPIN_IMAGE_PY
 
+#include "../export.h"
 #include <Python.h>
 #include "Common/ArrayTypes.h"
 #include "DataStore/Selector.h"
@@ -35,7 +36,7 @@
 
 
 //! Compute spin images on a set of points.
-class SpinImageBatch_py
+class LASERLIB_FEATURES_EXPORT SpinImageBatch_py
 {
 public:
     SpinImageBatch_py( PyObject* P, PyObject* sn,

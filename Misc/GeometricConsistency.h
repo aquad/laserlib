@@ -24,6 +24,8 @@
 #ifndef GEOMETRIC_CONSISTENCY
 #define GEOMETRIC_CONSISTENCY
 
+#include "export.h"
+
 #define EIGEN_DEFAULT_TO_ROW_MAJOR 1
 #include <Eigen/Dense>
 #include "Common/ArrayTypes.h"
@@ -39,13 +41,13 @@ typedef boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS> Corr
 
 
 
-boost::shared_ptr< CorrGraph > BuildCorrGraph( pairMatrix& matches,
+LASERLIB_MISC_EXPORT boost::shared_ptr< CorrGraph > BuildCorrGraph( pairMatrix& matches,
                      Mat3<float>::type& testP, Mat3<float>::type& testVect,
                      Mat3<float>::type& trainP, Mat3<float>::type& trainVect,
                      float distThresh, float angleThresh, float minDist );
 
 
-boost::shared_ptr< CorrGraph > BuildCorrGraphZAligned( pairMatrix& matches,
+LASERLIB_MISC_EXPORT boost::shared_ptr< CorrGraph > BuildCorrGraphZAligned( pairMatrix& matches,
                      Mat3<float>::type& testP, Mat3<float>::type& testVect,
                      Mat3<float>::type& trainP, Mat3<float>::type& trainVect,
                      float distThresh, float angleThresh, float minDist );
@@ -79,7 +81,7 @@ This approach is an attempt to bypass building a full correspondence graph by do
 \param angleThresh: the surface normal / linear direction angle difference threshold.
 \param rmseWeight: the consistency score is given by [distance from seed - pair rmse * rmseWeight], higher is better.
 */
-void FindConsistentSet( Vect<int>::type& seeds,
+LASERLIB_MISC_EXPORT void FindConsistentSet( Vect<int>::type& seeds,
                        Vect<int>::type& testIds,
                        Mat3<float>::type& testP, Mat3<float>::type& testVect,
                        Vect<int>::type& trainIds,
@@ -104,7 +106,7 @@ Given two objects (pointclouds) with a set of pairwise matches, build a correspo
 --Output--
 \param[out] components: a (n,) int32 array indicating the 'id' of the component each pair belongs to (each id is a connected component).
 */
-void FindComponents( pairMatrix& matches,
+LASERLIB_MISC_EXPORT void FindComponents( pairMatrix& matches,
                  Mat3<float>::type& testP, Mat3<float>::type& testVect,
                  Mat3<float>::type& trainP, Mat3<float>::type& trainVect,
                  float distThresh, float angleThresh,
@@ -130,7 +132,7 @@ Warning- this can take a long long time for large graphs (>10,000 edges).
 --Output--
 \param[out] maxClique: a vector of pair ids in the maximal clique.
 */
-void FindMaxClique( pairMatrix& matches,
+LASERLIB_MISC_EXPORT void FindMaxClique( pairMatrix& matches,
                  Mat3<float>::type& testP, Mat3<float>::type& testVect,
                  Mat3<float>::type& trainP, Mat3<float>::type& trainVect,
                  float distThresh, float minDist, float angleThresh, int minCliqueSize, int maxEdges,
@@ -144,7 +146,7 @@ to one-to-one matches of the highest values.
 \param fDist: (n,) array of feature distances of matches
 \param[out] matchesUnique: references matches that are unique (one to one)
 */
-void PairsOneToOne( pairMatrix& matches, Vect<float>::type& fDist, std::vector<int>& matchesUnique );
+LASERLIB_MISC_EXPORT void PairsOneToOne( pairMatrix& matches, Vect<float>::type& fDist, std::vector<int>& matchesUnique );
 
 
 #endif //GEOMETRIC_CONSISTENCY

@@ -24,6 +24,7 @@
 #ifndef LINE_IMAGE_KNN_HEADER_GUARD
 #define LINE_IMAGE_KNN_HEADER_GUARD
 
+#include "export.h"
 
 //Eigen
 #define EIGEN_DEFAULT_TO_ROW_MAJOR 1
@@ -40,7 +41,7 @@
 
 /*! Classify points in an object using KNN.
 */
-class LineImageKnn : public ObjectKnnClassifier
+class LASERLIB_FEATURES_EXPORT LineImageKnn : public ObjectKnnClassifier
 {
 public:
     LineImageKnn( LineImageParams& params, int metricNo,
@@ -98,7 +99,7 @@ public:
 Only match points if the aligning vectors have a similar z component (ie, objects
 rotate about z axis only).
 */
-class LineImageKnnAligned : public ObjectKnnClassifier
+class LASERLIB_FEATURES_EXPORT LineImageKnnAligned : public ObjectKnnClassifier
 {
 public:
     LineImageKnnAligned( LineImageParams& params, int metricNo,
@@ -169,7 +170,7 @@ Each object has a set of features. For a given training object:
 This results in a histogram of feature distances for each training object.
 A good matching object will have lots of low-distance matches.
 */
-class ObjectMatchHistogram
+class LASERLIB_FEATURES_EXPORT ObjectMatchHistogram
 {
 public:
     ObjectMatchHistogram( LineImageParams& params, int metricNo,

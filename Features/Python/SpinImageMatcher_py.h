@@ -24,6 +24,7 @@
 #ifndef SPIN_IMAGE_MATCHER_PY
 #define SPIN_IMAGE_MATCHER_PY
 
+#include "../export.h"
 #include <Python.h>
 #include <numpy/arrayobject.h>
 #include "Features/SpinImage.h"
@@ -36,14 +37,14 @@ training_py: (n, cellSide x cellSide) float32 numpy array.
 values_py: (n,) float32 numpy array (output).
 lamb: lambda weighting parameter for metric SIMILARITY (see spin image paper).
 */
-void MatchSpinSets_py( PyObject* test_py, PyObject* train_py, PyObject* values_py, float lamb, SpinMetric metric );
+LASERLIB_FEATURES_EXPORT void MatchSpinSets_py( PyObject* test_py, PyObject* train_py, PyObject* values_py, float lamb, SpinMetric metric );
 
 
-float SpinCorrelation_py( PyObject* Ppy, PyObject* Qpy);
-float SpinCorrAtanh_py( PyObject* Ppy, PyObject* Qpy);
-float SpinSimilarity_py( PyObject* Ppy, PyObject* Qpy, float lamb);
+LASERLIB_FEATURES_EXPORT float SpinCorrelation_py( PyObject* Ppy, PyObject* Qpy);
+LASERLIB_FEATURES_EXPORT float SpinCorrAtanh_py( PyObject* Ppy, PyObject* Qpy);
+LASERLIB_FEATURES_EXPORT float SpinSimilarity_py( PyObject* Ppy, PyObject* Qpy, float lamb);
 
-void SpinKnn_py( PyObject* test_py, PyObject* training_py,
+LASERLIB_FEATURES_EXPORT void SpinKnn_py( PyObject* test_py, PyObject* training_py,
                  PyObject* matches_py, PyObject* values_py, float lamb, SpinMetric metric );
 
 #endif //SPIN_IMAGE_MATCHER_PY

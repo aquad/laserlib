@@ -26,6 +26,7 @@
 #ifndef SELECTOR_HEADER
 #define SELECTOR_HEADER
 
+#include "export.h"
 #include <vector>
 #include <boost/shared_ptr.hpp>
 
@@ -34,7 +35,7 @@
 Make your own region selector, then pass it to any algorithm needing region selection using this interface.
 Note: inheritance works through python too!
 */
-class Selector
+class LASERLIB_DATASTORE_EXPORT Selector
 {
 public:
     virtual std::vector<int>& SelectRegion( unsigned int centre ) = 0;

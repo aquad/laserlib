@@ -24,6 +24,7 @@
 #ifndef LINE_DISTRIB_PY
 #define LINE_DISTRIB_PY
 
+#include "../export.h"
 #include <Python.h>
 #include <numpy/arrayobject.h>
 #include <boost/python.hpp>
@@ -32,7 +33,7 @@
 #include "Common/ArrayTypes.h"
 #include "Features/LineDistrib.h"
 
-class LineDistrib_py : public LineDistrib
+class LASERLIB_FEATURES_EXPORT LineDistrib_py : public LineDistrib
 {
 public:
     LineDistrib_py( LineImageParams& params, float binLength );
@@ -55,8 +56,9 @@ public:
 };
 
 
-boost::shared_ptr<LineDistrib_py> LineDistrib_py_constructor(
+LASERLIB_FEATURES_EXPORT boost::shared_ptr<LineDistrib_py> LineDistrib_py_constructor(
         PyObject* params_py, float binLength );
+LASERLIB_FEATURES_EXTERN template LineDistrib_py const volatile * LASERLIB_FEATURES_IMPORT boost::get_pointer(LineDistrib_py const volatile *);
 
 
 #endif //LINE_DISTRIB_PY

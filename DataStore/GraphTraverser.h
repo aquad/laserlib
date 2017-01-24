@@ -34,6 +34,7 @@
 #ifndef GRAPH_TRAVERSER
 #define GRAPH_TRAVERSER
 
+#include "export.h"
 #include <vector>
 
 //Eigen
@@ -52,25 +53,25 @@ For each point, select the neighbours left/right/up/down at least distance 'rad'
 \param P - 3d points, (n,3) matrix
 \param rad - Select points at least this far away.
 */
-void Get4Neighs( Graph& neighs, Graph& graph, Mat3<double>::type& P, double rad );
+LASERLIB_DATASTORE_EXPORT void Get4Neighs( Graph& neighs, Graph& graph, Mat3<double>::type& P, double rad );
 
 //! Get4Neighs with rad=0 actually does this... but this is slightly faster
-void Get4NeighsClosest( Graph& neighs, Graph& graph );
+LASERLIB_DATASTORE_EXPORT void Get4NeighsClosest( Graph& neighs, Graph& graph );
 
 //! Neighbours must be valid
-void Get4NeighsValid( Graph& neighs, Graph& graph, Mat3<double>::type& P,
+LASERLIB_DATASTORE_EXPORT void Get4NeighsValid( Graph& neighs, Graph& graph, Mat3<double>::type& P,
                                   bool* valid, double rad );
 //@}
 
 
 //! Grow a segment based on convexity criterion
-void RegionGrowConvex( unsigned int centre, unsigned int segId,
+LASERLIB_DATASTORE_EXPORT void RegionGrowConvex( unsigned int centre, unsigned int segId,
                        Vect<int>::type& segs, std::vector< unsigned int >& mergedSegs,
                        Graph& convex, Graph& graph,
                        Mat3<double>::type& surfNorms, double eta3 );
 
 //! Segment a graph by region growing based on convexity
-void ConvexSegment( Vect<int>::type segs, Graph& convex, Graph& graph,
+LASERLIB_DATASTORE_EXPORT void ConvexSegment( Vect<int>::type segs, Graph& convex, Graph& graph,
                     Mat3<double>::type& surfNorms,  double eta3 );
 
 
@@ -86,7 +87,7 @@ const unsigned int maxNeighs = 100;
 SelectRegion will flood fill here- need to specify a real WithinCriteria() in a subclass.
 Use copy constructors where necessary, can then be parallelised easily with OMP.
 */
-class GraphTraverser : virtual public Selector
+class LASERLIB_DATASTORE_EXPORT GraphTraverser : virtual public Selector
 {
 public:
     GraphTraverser( Graph& graph_in )
@@ -144,7 +145,7 @@ inline void GraphTraverser::GetPerpendicular( Direction dir, Direction perpDirs[
 
 
 //For 3d spherical selections
-class GraphSphereSelector : public GraphTraverser
+class LASERLIB_DATASTORE_EXPORT GraphSphereSelector : public GraphTraverser
 {
 public:
     GraphSphereSelector( Graph& graph_in, Mat3<double>::type& P_in, double rad_in )
@@ -182,7 +183,7 @@ private:
 
 
 //For a box selection in the range image space
-class BearingBoxSelector : public GraphTraverser
+class LASERLIB_DATASTORE_EXPORT BearingBoxSelector : public GraphTraverser
 {
 public:
     BearingBoxSelector( Graph& graph_in, Vect<double>::type& w_in,
@@ -223,7 +224,7 @@ private:
 
 
 //just so we can use the output from Get4Neighs on point-wise functions like PCA.
-class PreFourNeighSelector : virtual public Selector
+class LASERLIB_DATASTORE_EXPORT PreFourNeighSelector : virtual public Selector
 {
 public:
     PreFourNeighSelector( Graph& _neighs_all )

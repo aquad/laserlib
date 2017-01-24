@@ -24,6 +24,7 @@
 #ifndef KNN_CLASSIFIER_PY
 #define KNN_CLASSIFIER_PY
 
+#include "../export.h"
 #include <Python.h>
 #include "Common/ArrayTypes.h"
 #include "Features/KnnClassifier.h"
@@ -35,7 +36,7 @@
  * the actual classifying code, and also inherits ObjectKnnClassifier_py to
  * provide python functions for the code.
  */
-class ObjectKnnClassifier_py : virtual public ObjectKnnClassifierInterface
+class LASERLIB_FEATURES_EXPORT ObjectKnnClassifier_py : virtual public ObjectKnnClassifierInterface
 {
 public:
     ObjectKnnClassifier_py() {}
@@ -67,7 +68,7 @@ public:
 
 
 //Encapsulates Knn results
-struct MatchData
+struct LASERLIB_FEATURES_EXPORT MatchData
 {
     MatchData( MapMatXi& object, MapMatXi& point, MapMatXf& dist );
     MatchData( PyObject* object_py, PyObject* point_py, PyObject* dist_py );

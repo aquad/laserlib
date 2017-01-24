@@ -24,6 +24,7 @@
 #ifndef LINE_IMAGE_MATCHER_HEADER_GUARD
 #define LINE_IMAGE_MATCHER_HEADER_GUARD
 
+#include "export.h"
 //Eigen
 #define EIGEN_DEFAULT_TO_ROW_MAJOR 1
 #include <Eigen/Core>
@@ -36,7 +37,7 @@
 
 
 //! Compute distance metrics for line images
-class LineImageMatcher
+class LASERLIB_FEATURES_EXPORT LineImageMatcher
 {
 public:
     LineImageMatcher(LineImageParams& params);
@@ -97,12 +98,12 @@ protected:
 
 
 //! Make a line image matcher of the given metric number.
-boost::shared_ptr<LineImageMatcher> MakeLIMatcher( LineImageParams& params, int metric );
+LASERLIB_FEATURES_EXPORT boost::shared_ptr<LineImageMatcher> MakeLIMatcher( LineImageParams& params, int metric );
 
 
 
 //! Line images in an object
-class ObjLineImages
+class LASERLIB_FEATURES_EXPORT ObjLineImages
 {
 public:
     ObjLineImages( MapMatXf& values_, MapMatXuc& status_,
@@ -120,7 +121,7 @@ public:
 
 
 //! Line images and aligning vectors in an object
-class ObjLineImagesAligned : public ObjLineImages
+class LASERLIB_FEATURES_EXPORT ObjLineImagesAligned : public ObjLineImages
 {
 public:
     ObjLineImagesAligned( Mat3<float>::type& alignVectors_,

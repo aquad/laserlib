@@ -24,6 +24,7 @@
 #ifndef HISTOGRAM_PY
 #define HISTOGRAM_PY
 
+#include "../export.h"
 #include <Python.h>
 #include "LaserPy/numpy_to_eigen.h"
 #include "Common/ArrayTypes.h"

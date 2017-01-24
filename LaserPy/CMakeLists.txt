@@ -102,6 +102,7 @@ SET( TARGET_LIBS
      ${Boost_PYTHON_LIBRARY})
 
 #needs to be a shared library
+REMOVE_DEFINITIONS(-DLASERLIB_EXPORT_API)
 ADD_LIBRARY( ${TARGET_NAME} SHARED 
     ${includes} ${source}
     ${datastore_includes} ${datastore_source}

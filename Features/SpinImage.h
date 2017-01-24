@@ -24,6 +24,7 @@
 #ifndef SPIN_IMAGE
 #define SPIN_IMAGE
 
+#include "export.h"
 #include <vector>
 
 #define EIGEN_DEFAULT_TO_ROW_MAJOR 1
@@ -32,7 +33,7 @@
 #include "Common/ArrayTypes.h"
 
 
-class SpinImage
+class LASERLIB_FEATURES_EXPORT SpinImage
 {
 public:
     SpinImage(Mat3<double>::type& P, Mat3<double>::type& sn,
@@ -121,7 +122,7 @@ inline float SpinSimilarity( float* P, float* Q, int n, float lamb )
 
 enum SpinMetric {CORR=0, CORR_ATANH=1, SIMILARITY=2};
 
-float SpinDistance( float* P, float* Q, int n, float lamb, SpinMetric metric );
+LASERLIB_FEATURES_EXPORT float SpinDistance( float* P, float* Q, int n, float lamb, SpinMetric metric );
 
 
 

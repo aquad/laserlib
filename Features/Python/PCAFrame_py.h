@@ -24,13 +24,14 @@
 #ifndef PCA_FRAME_PY
 #define PCA_FRAME_PY
 
+#include "../export.h"
 #include <Python.h>
 #include <numpy/arrayobject.h>
 #include <boost/python/overloads.hpp>
 #include "Features/PCAFrame.h"
 
 
-class PCAFrames_py : public PCAFrames
+class LASERLIB_FEATURES_EXPORT PCAFrames_py : public PCAFrames
 {
 public:
     PCAFrames_py( int n )
@@ -78,9 +79,10 @@ public:
 };
 
 
-void ComputePCAFrames_py(
+LASERLIB_FEATURES_EXPORT void ComputePCAFrames_py(
         PyObject* meanP_py, PyObject* evals_py, PyObject* evects_py, PCAFrames_py& frames,
         float surfThresh = 0.3, float linThresh = 0.5, float ssRad = 0.01);
+LASERLIB_FEATURES_EXTERN template PCAFrames_py const volatile * LASERLIB_FEATURES_IMPORT boost::get_pointer(PCAFrames_py const volatile *);
 
 // macro for default arguments
 BOOST_PYTHON_FUNCTION_OVERLOADS(ComputePCAFrames_overloads, ComputePCAFrames_py, 4, 7)

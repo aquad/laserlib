@@ -26,6 +26,7 @@
 #ifndef ARRAY_TYPES
 #define ARRAY_TYPES
 
+#include "export.h"
 
 //Python defaults to row major, but eigen (and PCL) defaults to column major.
 //This line must be before any eigen includes, so that eigen typedefs like MatrixXf are row-major.
@@ -41,15 +42,24 @@ struct Vect {
     typedef Eigen::Map< Eigen::Matrix< T, Eigen::Dynamic, 1 > > type;
 };
 
+LASERLIB_COMMON_EXTERN template struct LASERLIB_COMMON_IMPORT Vect<double>;
+LASERLIB_COMMON_EXTERN template struct LASERLIB_COMMON_IMPORT Vect<float>;
+
 template <typename T>
 struct Mat2 {
     typedef Eigen::Map< Eigen::Matrix< T, Eigen::Dynamic, 2, Eigen::RowMajor > > type;
 };
 
+LASERLIB_COMMON_EXTERN template struct LASERLIB_COMMON_IMPORT Mat2<double>;
+LASERLIB_COMMON_EXTERN template struct LASERLIB_COMMON_IMPORT Mat2<float>;
+
 template <typename T>
 struct Mat3 {
     typedef Eigen::Map< Eigen::Matrix< T, Eigen::Dynamic, 3, Eigen::RowMajor > > type;
 };
+
+LASERLIB_COMMON_EXTERN template struct LASERLIB_COMMON_IMPORT Mat3<double>;
+LASERLIB_COMMON_EXTERN template struct LASERLIB_COMMON_IMPORT Mat3<float>;
 
 typedef Eigen::Map< Eigen::Matrix< int, Eigen::Dynamic, 4, Eigen::RowMajor > > Graph;
 

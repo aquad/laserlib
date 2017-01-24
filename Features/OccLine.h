@@ -24,6 +24,7 @@
 #ifndef OCC_LINE_HEADER_GUARD
 #define OCC_LINE_HEADER_GUARD
 
+#include "export.h"
 #define EIGEN_DEFAULT_TO_ROW_MAJOR 1
 #include <Eigen/Dense>
 
@@ -37,7 +38,7 @@
 class VeloRangeImage;
 class VelodyneDb;
 
-struct OccLineParams
+struct LASERLIB_FEATURES_EXPORT OccLineParams
 {
     double wNearThresh; //width along line for point selection.
     double angleNoDataThresh; //line is occluded if no data for this angular length.
@@ -48,11 +49,11 @@ struct OccLineParams
 };
 
 
-enum LineStatus {UNKNOWN=0, EMPTY=1, VALUE=2};
+enum LASERLIB_FEATURES_EXPORT LineStatus {UNKNOWN=0, EMPTY=1, VALUE=2};
 
 
 //! Defines a line in 3D and 2D (range image coords)
-struct LineCoords
+struct LASERLIB_FEATURES_EXPORT LineCoords
 {
     LineCoords( const Eigen::Vector3f& _start, const Eigen::Vector3f& _end, VeloRangeImage& image );
 
@@ -71,7 +72,7 @@ struct LineCoords
 };
 
 
-struct PCAResults
+struct LASERLIB_FEATURES_EXPORT PCAResults
 {
     PCAResults(Mat3<float>::type& _evals, MapMat33Xf& _evects, Mat3<double>::type& _meanP, Vect<int>::type& _pidToResult)
         :   evals(_evals), evects(_evects), meanP(_meanP), pidToResult(_pidToResult) {}
@@ -83,7 +84,7 @@ struct PCAResults
 };
 
 
-class OccLine
+class LASERLIB_FEATURES_EXPORT OccLine
 {
 public:
     OccLine( OccLineParams& params, Mat3<double>::type& P, Vect<unsigned char>::type& id,

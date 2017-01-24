@@ -24,6 +24,7 @@
 #ifndef ICP_PY_HEADER_GUARD
 #define ICP_PY_HEADER_GUARD
 
+#include "../export.h"
 #include <Python.h>
 #include "Misc/ICP.h"
 
@@ -40,8 +41,8 @@ outputs a 3-tuple: (R, errSqr, isSingular)
 \param errSqr - (output) resulting ICP error
 \param isSingular - (output) if this is true, the rotation matrix was not found.
 */
-PyObject* ICP_PointPlane_2D_py( PyObject* targetP, PyObject* n, PyObject* templateP );
+LASERLIB_MISC_EXPORT PyObject* ICP_PointPlane_2D_py( PyObject* targetP, PyObject* n, PyObject* templateP );
 
-PyObject* ICP_PointPlane_3D_py( PyObject* targetP, PyObject* n, PyObject* templateP );
+LASERLIB_MISC_EXPORT PyObject* ICP_PointPlane_3D_py( PyObject* targetP, PyObject* n, PyObject* templateP );
 
 #endif //ICP_PY_HEADER_GUARD

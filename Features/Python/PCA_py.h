@@ -24,6 +24,7 @@
 #ifndef PCA_PY_HEADER_GUARD
 #define PCA_PY_HEADER_GUARD
 
+#include "../export.h"
 #include <Python.h>
 #include <boost/python.hpp>
 #include "Common/ArrayTypes.h"
@@ -33,7 +34,7 @@ class Selector;
 class ImageSphereSelector_py;
 
 
-class PCA_py
+class LASERLIB_FEATURES_EXPORT PCA_py
 {
 public:
     PCA_py( PyObject* P, int nThreads=1 );
@@ -48,7 +49,7 @@ private:
 };
 
 
-void minRadiusSelection_py( PyObject* graph_py, PyObject* P_py, PyObject* rad_py, PyObject* valid_py );
+LASERLIB_FEATURES_EXPORT void minRadiusSelection_py( PyObject* graph_py, PyObject* P_py, PyObject* rad_py, PyObject* valid_py );
 
 
 //default args

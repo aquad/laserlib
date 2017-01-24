@@ -24,6 +24,7 @@
 #ifndef CLUSTER_AP_PY
 #define CLUSTER_AP_PY
 
+#include "../export.h"
 #include <Python.h>
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 #include <numpy/arrayobject.h>
@@ -31,7 +32,7 @@
 #include "Misc/ClusterAP.h"
 
 
-class ClusterAP_py : public ClusterAP
+class LASERLIB_MISC_EXPORT ClusterAP_py : public ClusterAP
 {
 public:
     ClusterAP_py( MapMatXf& sim_py, bool showProgress=true, float damping=0.9,
@@ -45,7 +46,7 @@ public:
     PyObject* getResponsibilities_py();
 };
 
-boost::shared_ptr<ClusterAP_py> ClusterAP_py_constructor( PyObject* sim_py, bool showProgress, float damping,
+LASERLIB_MISC_EXPORT boost::shared_ptr<ClusterAP_py> ClusterAP_py_constructor( PyObject* sim_py, bool showProgress, float damping,
                                                           int minIter, int convergeIter, int maxIter, int nThreads );
 
 
