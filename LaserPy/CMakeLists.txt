@@ -12,6 +12,9 @@ FIND_PACKAGE( PythonInterp 2.7 REQUIRED )
 message("Using python version: " ${PYTHON_VERSION_STRING})
 INCLUDE(../CMakeFiles/FindNumpy.cmake)
 FIND_PACKAGE( Boost COMPONENTS python REQUIRED)
+IF( NOT BUILD_LaserLib_SHARED )
+  ADD_DEFINITIONS(-DBOOST_PYTHON_STATIC_LIB)
+ENDIF()
 
 EXECUTE_PROCESS( COMMAND ${PYTHON_EXECUTABLE} -c 
 "from distutils.sysconfig import get_python_lib; print(get_python_lib())"
