@@ -34,6 +34,7 @@
 #ifndef BEARING_GRAPH
 #define BEARING_GRAPH
 
+#include "export.h"
 #include <vector>
 #include <boost/array.hpp>
 #include <boost/shared_array.hpp>
@@ -104,7 +105,7 @@ struct BearingGraph
 
 Uses the integer azimuth and distance values from the velodyne to speed things up.
 */
-class BearingGraphBuilder
+class LASERLIB_DATASTORE_EXPORT BearingGraphBuilder
 {
 public:
 

@@ -24,6 +24,7 @@
 #ifndef LINE_DISTRIBUTION_HEADER_GUARD
 #define LINE_DISTRIBUTION_HEADER_GUARD
 
+#include "export.h"
 #include <vector>
 #include "LineImage.h"
 
@@ -41,7 +42,7 @@
  * which will allow unknown regions to be revealed as matching shapes are
  * integrated.
  * */
-class LineDistrib
+class LASERLIB_FEATURES_EXPORT LineDistrib
 {
 public:
     typedef std::vector<float>::iterator BinIter;

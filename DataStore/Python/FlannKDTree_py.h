@@ -25,6 +25,7 @@
 #ifndef FLANN_KD_TREE_PY
 #define FLANN_KD_TREE_PY
 
+#include "../export.h"
 #include "DataStore/FlannKDTree.h"
 #include "Selector_py.h"
 
@@ -50,5 +51,9 @@ public:
     }
 };
 
+LASERLIB_DATASTORE_EXTERN template class LASERLIB_DATASTORE_IMPORT FlannKDTree_py<double>;
+LASERLIB_DATASTORE_EXTERN template class LASERLIB_DATASTORE_IMPORT FlannKDTree_py<float>;
+LASERLIB_DATASTORE_EXTERN template FlannKDTree_py<double> const volatile * LASERLIB_DATASTORE_IMPORT boost::get_pointer(FlannKDTree_py<double> const volatile *);
+LASERLIB_DATASTORE_EXTERN template FlannKDTree_py<float> const volatile * LASERLIB_DATASTORE_IMPORT boost::get_pointer(FlannKDTree_py<float> const volatile *);
 
 #endif //FLANN_KD_TREE_PY

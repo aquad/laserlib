@@ -26,16 +26,11 @@ SET_TARGET_PROPERTIES( ${TARGET_NAME} PROPERTIES ${LaserLib_LIBRARY_PROPERTIES} 
 #ADD_DEPENDENCIES( ${TARGET_NAME} LaserDataStore )
 #TARGET_LINK_LIBRARIES ( ${TARGET_NAME} LaserDataStore )
 
-IF( WIN32 )
-  TARGET_LINK_LIBRARIES( ${TARGET_NAME}
-                         debug libboost_system-vc90-mt-gd-${Boost_VERSION_SUFFIX}.lib
-                         optimized libboost_system-vc90-mt-${Boost_VERSION_SUFFIX}.lib
-                         debug libboost_thread-vc90-mt-gd-${Boost_VERSION_SUFFIX}.lib
-                         optimized libboost_thread-vc90-mt-${Boost_VERSION_SUFFIX}.lib )
-
-ELSE( WIN32 )
-  TARGET_LINK_LIBRARIES ( ${TARGET_NAME} boost_system boost_thread )
-ENDIF( WIN32 )
+TARGET_LINK_LIBRARIES ( ${TARGET_NAME}
+	LaserCommon 
+	LaserDataStore 
+	${Boost_SYSTEM_LIBRARY} 
+	${Boost_THREAD_LIBRARY} )
 
 # install
 INSTALL( FILES ${includes} DESTINATION ${CMAKE_INSTALL_PREFIX}/${LaserLib_INSTALL_INCLUDE_DIR}/${PROJECT} )

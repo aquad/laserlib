@@ -25,6 +25,7 @@
 #ifndef ICP_HEADER_GUARD
 #define ICP_HEADER_GUARD
 
+#include "export.h"
 #define EIGEN_DEFAULT_TO_ROW_MAJOR 1
 #include <Eigen/Dense>
 #include "Common/ArrayTypes.h"
@@ -48,10 +49,10 @@ Based on www.cs.princeton.edu/~smr/papers/icpstability.pdf
 \param errSqr - (output) resulting ICP error
 \param isSingular - (output) if this is true, the rotation matrix was not found. Currently not used- need to detect singular matrices somehow.
 */
-void ICP_PointPlane_2D( Mat3<double>::type& targetP, Mat3<double>::type& n, Mat3<double>::type& templateP,
+LASERLIB_MISC_EXPORT void ICP_PointPlane_2D( Mat3<double>::type& targetP, Mat3<double>::type& n, Mat3<double>::type& templateP,
                        TransformMatrix& R, double& errSqr, bool& isSingular );
 
-void ICP_PointPlane_3D( Mat3<double>::type& targetP, Mat3<double>::type& n, Mat3<double>::type& templateP,
+LASERLIB_MISC_EXPORT void ICP_PointPlane_3D( Mat3<double>::type& targetP, Mat3<double>::type& n, Mat3<double>::type& templateP,
                        TransformMatrix& R, double& errSqr, bool& isSingular );
 //@}
 

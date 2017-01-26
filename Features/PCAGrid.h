@@ -24,6 +24,7 @@
 #ifndef PCA_GRID_HEADER_GUARD
 #define PCA_GRID_HEADER_GUARD
 
+#include "export.h"
 
 #define EIGEN_DEFAULT_TO_ROW_MAJOR 1
 
@@ -50,7 +51,7 @@ struct PCAGridElement
 
 
 // compute a feature based on a grid of PCA results
-class PCAGrid
+class LASERLIB_FEATURES_EXPORT PCAGrid
 {
 public:
     PCAGrid( Mat3<float>::type meanP, Mat3<float>::type evals, MapMat33Xf evects,

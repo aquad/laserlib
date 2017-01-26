@@ -24,6 +24,7 @@
 #ifndef SPIN_IMAGE_KNN_PY
 #define SPIN_IMAGE_KNN_PY
 
+#include "../export.h"
 #include <Python.h>
 #include <numpy/arrayobject.h>
 #include <boost/shared_ptr.hpp>
@@ -35,18 +36,18 @@
 
 
 
-void ObjSpinImagesDataSet_from_py( PyObject* dataset_py,
+LASERLIB_FEATURES_EXPORT void ObjSpinImagesDataSet_from_py( PyObject* dataset_py,
         std::vector<MapMatXf>& dataset );
 
 
-ObjSpinImagesAligned ObjSpinImagesAligned_from_py( PyObject* data_py );
+LASERLIB_FEATURES_EXPORT ObjSpinImagesAligned ObjSpinImagesAligned_from_py( PyObject* data_py );
 
-void ObjSpinImagesAlignedDataSet_from_py( PyObject* dataset_py,
+LASERLIB_FEATURES_EXPORT void ObjSpinImagesAlignedDataSet_from_py( PyObject* dataset_py,
         std::vector<ObjSpinImagesAligned>& dataset );
 
 
 
-class SpinImageKnn_py : public SpinImageKnn, public ObjectKnnClassifier_py
+class LASERLIB_FEATURES_EXPORT SpinImageKnn_py : public SpinImageKnn, public ObjectKnnClassifier_py
 {
 public:
     SpinImageKnn_py( std::vector<MapMatXf>& trainObjData,
@@ -71,12 +72,13 @@ private:
 boost::shared_ptr<SpinImageKnn_py> SpinImageKnn_py_constructor(
         PyObject* trainObjData, SpinMetric metricNo, float lamb = 0,
         bool showProgress = false);
+LASERLIB_FEATURES_EXTERN template SpinImageKnn_py const volatile * LASERLIB_FEATURES_IMPORT boost::get_pointer(SpinImageKnn_py const volatile *);
 
 
 
 
 
-class SpinImageKnnAligned_py : public SpinImageKnnAligned, public ObjectKnnClassifier_py
+class LASERLIB_FEATURES_EXPORT SpinImageKnnAligned_py : public SpinImageKnnAligned, public ObjectKnnClassifier_py
 {
 public:
     SpinImageKnnAligned_py( std::vector<ObjSpinImagesAligned>& trainObjData,
@@ -104,6 +106,7 @@ private:
 boost::shared_ptr<SpinImageKnnAligned_py> SpinImageKnnAligned_py_constructor(
         PyObject* trainObjData, SpinMetric metricNo, float alignThresh,
         float lamb = 0, bool showProgress = false);
+LASERLIB_FEATURES_EXTERN template SpinImageKnnAligned_py const volatile * LASERLIB_FEATURES_IMPORT boost::get_pointer(SpinImageKnnAligned_py const volatile *);
 
 
 #endif //SPIN_IMAGE_KNN_PY

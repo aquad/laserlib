@@ -104,10 +104,12 @@ ENDIF()
 
 #-----------------------------------------------------------------------------
 
-IF( NOT BUILD_SHARED_LIBS )
+IF( BUILD_SHARED_LIBS )
+    SET( Boost_USE_STATIC_LIBS OFF )
+ELSE()
     SET( Boost_USE_STATIC_LIBS ON )
 ENDIF( NOT BUILD_SHARED_LIBS )
-FIND_PACKAGE( Boost COMPONENTS filesystem system date_time )
+FIND_PACKAGE( Boost COMPONENTS filesystem system date_time REQUIRED)
 INCLUDE_DIRECTORIES( ${Boost_INCLUDE_DIRS} )
 LINK_DIRECTORIES( ${Boost_LIBRARY_DIRS} )
 
@@ -124,6 +126,7 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 
 IF(BUILD_LaserLib_SHARED)
   SET(LaserLib_LIBRARY_TYPE SHARED)
+  ADD_DEFINITIONS(-DLASERLIB_EXPORT_API)
 ELSE()
   SET(LaserLib_LIBRARY_TYPE STATIC)
 ENDIF()
@@ -137,30 +140,15 @@ INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_BINARY_DIR} )
 ADD_SUBDIRECTORY( Common )
 ADD_SUBDIRECTORY( DataStore )
 ADD_SUBDIRECTORY( Features )
-ADD_SUBDIRECTORY( Misc )
+IF( LaserLib_USE_FLANN )
+  ADD_SUBDIRECTORY( Misc )
+ENDIF()
 
 IF( LaserLib_USE_PCL )
   ADD_SUBDIRECTORY( PCL )
 ENDIF()
 
-
-#do not add any subdirectories with applications after LaserPy
-#(you get a linking error for some reason)
-IF( LaserLib_USE_PYTHON )
-  FIND_PACKAGE( PythonLibs 2.7 REQUIRED )
-  FIND_PACKAGE( PythonInterp 2.7 REQUIRED )
-  message("Using python version: " ${PYTHON_VERSION_STRING})
-  INCLUDE(CMakeFiles/FindNumpy.cmake)
-  FIND_PACKAGE( Boost COMPONENTS python )
-  LINK_DIRECTORIES( ${PYTHON_LIBRARIES} )
-  INCLUDE_DIRECTORIES( ${NUMPY_INCLUDE_DIR} ${PYTHON_INCLUDE_DIRS} )
-
-  EXECUTE_PROCESS( COMMAND ${PYTHON_EXECUTABLE} -c 
-    "from distutils.sysconfig import get_python_lib; print(get_python_lib())"
-    OUTPUT_VARIABLE PYTHON_DIST_PACKAGES
-    OUTPUT_STRIP_TRAILING_WHITESPACE )
-  SET( PYTHON_EXTENSION_INSTALL_PATH ${PYTHON_DIST_PACKAGES} CACHE PATH
-   "Directory in PYTHONPATH where extensions are installed.")
+IF( LaserLib_USE_FLANN AND LaserLib_USE_PYTHON )
   ADD_SUBDIRECTORY( LaserPy )
 ENDIF()
 

@@ -24,6 +24,7 @@
 #ifndef SUBSAMPLE_PY_HEADER_GUARD
 #define SUBSAMPLE_PY_HEADER_GUARD
 
+#include "../export.h"
 #include <Python.h>
 #include <numpy/arrayobject.h>
 #include <boost/python.hpp>
@@ -32,13 +33,13 @@
 #include "Selector_py.h"
 
 
-void LocalMax_py( Selector& sel, int nTotal, PyObject* items, PyObject* val, PyObject* maxBy );
+LASERLIB_DATASTORE_EXPORT void LocalMax_py( Selector& sel, int nTotal, PyObject* items, PyObject* val, PyObject* maxBy );
 
-PyObject* SubSampleEvenly_py( Selector& sel, int nTotal );
+LASERLIB_DATASTORE_EXPORT PyObject* SubSampleEvenly_py( Selector& sel, int nTotal );
 
-PyObject* SubSampleKeysEvenly_py( Selector& sel, int nTotal, PyObject* keys_py );
+LASERLIB_DATASTORE_EXPORT PyObject* SubSampleKeysEvenly_py( Selector& sel, int nTotal, PyObject* keys_py );
 
-PyObject* SubsampleBySurfNorm_py( Selector& sel, int nTotal, PyObject* keys_py, PyObject* sn, double thresh);
+LASERLIB_DATASTORE_EXPORT PyObject* SubsampleBySurfNorm_py( Selector& sel, int nTotal, PyObject* keys_py, PyObject* sn, double thresh);
 
 
 #endif //SUBSAMPLE_PY_HEADER_GUARD

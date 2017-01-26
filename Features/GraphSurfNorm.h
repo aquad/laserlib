@@ -1,4 +1,4 @@
-/*! GraphSurfNorm.h 
+/*! GraphSurfNorm.h
  * Calculate and smooth surface normals using a bearing graph.
  *
  * Copyright (C) 2011 Alastair Quadros.
@@ -25,6 +25,7 @@
 #ifndef GRAPH_SURF_NORM_HEADER_GUARD
 #define GRAPH_SURF_NORM_HEADER_GUARD
 
+#include "export.h"
 #include "Common/ArrayTypes.h"
 
 /*!
@@ -40,7 +41,7 @@ Sets of 2 vectors are cross-producted and then averaged to get a surface normal.
 \param sn - (output) surface normals, (n,3) matrix
 \param valid - (output) whether each point has a valid surface normal, (n,) matrix
 */
-void CalcSurfNorms( Graph& neighs, Mat3<double>::type& P, Mat3<double>::type& sn, Vect<bool>::type& valid );
+LASERLIB_FEATURES_EXPORT void CalcSurfNorms( Graph& neighs, Mat3<double>::type& P, Mat3<double>::type& sn, Vect<bool>::type& valid );
 
 
 /*!
@@ -57,6 +58,6 @@ from the centre point, with the specified 'sd'.
 \param sn_blurred - (output) blurred surface normals, (n,3) matrix
 \param sd - (optional) standard deviation of gaussian, larger = far neighbours get weighted higher.
 */
-void BlurSurfNorms( Graph& neighs, Mat3<double>::type& P, Mat3<double>::type& sn,
+LASERLIB_FEATURES_EXPORT void BlurSurfNorms( Graph& neighs, Mat3<double>::type& P, Mat3<double>::type& sn,
                    Vect<bool>::type& valid, Mat3<double>::type& sn_blurred, double sd=1.0 );
 #endif //GRAPH_SURF_NORM_HEADER_GUARD

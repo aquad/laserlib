@@ -30,6 +30,7 @@
 #ifndef VELO_RANGE_IMAGE
 #define VELO_RANGE_IMAGE
 
+#include "export.h"
 #include <vector>
 #include "VelodyneDb.h"
 
@@ -42,7 +43,7 @@ Common parameters:
 \param el - elevation (rad)
 \param result - pointer to an array of indices, referring to 3D points
 */
-class VeloRangeImage
+class LASERLIB_DATASTORE_EXPORT VeloRangeImage
 {
 public:
     VeloRangeImage(int xRes, int maxPointsPerPixel, VelodyneDb& db);

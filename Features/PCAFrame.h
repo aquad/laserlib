@@ -25,6 +25,7 @@
 #ifndef PCA_FRAME_HEADER_GUARD
 #define PCA_FRAME_HEADER_GUARD
 
+#include "export.h"
 #define EIGEN_DEFAULT_TO_ROW_MAJOR 1
 #include <Eigen/Dense>
 #include <vector>
@@ -75,7 +76,7 @@ can be used to compute a frame of orientation to compute features at.
 If a region forms a good plane, x,y is parallel (y faces downwards/towards origin), z faces away from origin.
 If its a good line, x is parallel, z aligns to origin (facing outwards).
 */
-void ComputePCAFrames(
+LASERLIB_FEATURES_EXPORT void ComputePCAFrames(
         Mat3<double>::type meanP, Mat3<float>::type evals, MapMat33Xf evects,
         PCAFrames& frames, float surfThresh = 0.3, float linThresh = 0.5,
         float ssRad = 0.01 );

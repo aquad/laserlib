@@ -24,26 +24,27 @@
 #ifndef LINE_IMAGE_MATCHER_PY
 #define LINE_IMAGE_MATCHER_PY
 
+#include "../export.h"
 #include <Python.h>
 #include <boost/python/overloads.hpp>
 #include "Features/LineImageMatcher.h"
 
 
-void match_line_images( PyObject* params, int metric, PyObject* values1, PyObject* status1,
+LASERLIB_FEATURES_EXPORT void match_line_images( PyObject* params, int metric, PyObject* values1, PyObject* status1,
         PyObject* valuesSet, PyObject* statusSet,
         PyObject* rmse, PyObject* known );
 
 
-void match_line_images_keys( PyObject* params, int metric, PyObject* values1, PyObject* status1,
+LASERLIB_FEATURES_EXPORT void match_line_images_keys( PyObject* params, int metric, PyObject* values1, PyObject* status1,
         PyObject* valuesSet, PyObject* statusSet, PyObject* keys,
         PyObject* rmse, PyObject* known );
 
 
-void match_line_image_sets( PyObject* params, int metric, PyObject* values1, PyObject* status1,
+LASERLIB_FEATURES_EXPORT void match_line_image_sets( PyObject* params, int metric, PyObject* values1, PyObject* status1,
         PyObject* values2, PyObject* status2, PyObject* rmse, PyObject* known );
 
 
-void match_line_images_all( PyObject* params_py, int metric, PyObject* values1_py, PyObject* status1_py,
+LASERLIB_FEATURES_EXPORT void match_line_images_all( PyObject* params_py, int metric, PyObject* values1_py, PyObject* status1_py,
         PyObject* values2_py, PyObject* status2_py, PyObject* rmse_py, PyObject* known_py, int nThreads=1 );
 
 
@@ -58,7 +59,7 @@ BOOST_PYTHON_FUNCTION_OVERLOADS(match_line_images_all_overloads, match_line_imag
   values - line image values, numpy array, shape=(n,nLines), dtype=float32.
   status - line image status, numpy array, shape=(n,nLines), dtype=uint8.
   */
-ObjLineImagesAligned ObjLineImagesAligned_from_py( PyObject* data_py );
+	LASERLIB_FEATURES_EXPORT ObjLineImagesAligned ObjLineImagesAligned_from_py( PyObject* data_py );
 
 
 /*! Convert a python class to a ObjLineImages struct.
@@ -66,15 +67,15 @@ ObjLineImagesAligned ObjLineImagesAligned_from_py( PyObject* data_py );
   values - line image values, numpy array, shape=(n,nLines), dtype=float32.
   status - line image status, numpy array, shape=(n,nLines), dtype=uint8.
   */
-ObjLineImages ObjLineImages_from_py( PyObject* data_py );
+LASERLIB_FEATURES_EXPORT ObjLineImages ObjLineImages_from_py( PyObject* data_py );
 
 
 //! Convert a list of ObjLineImagesAligned from python, see ObjLineImagesAligned_from_py"()".
-void ObjLineImagesAlignedDataSet_from_py( PyObject* dataset_py, std::vector<ObjLineImagesAligned>& dataset );
+LASERLIB_FEATURES_EXPORT void ObjLineImagesAlignedDataSet_from_py( PyObject* dataset_py, std::vector<ObjLineImagesAligned>& dataset );
 
 
 //! Convert a list of ObjLineImages from python, see ObjLineImages_from_py"()".
-void ObjLineImagesDataSet_from_py( PyObject* dataset_py, std::vector<ObjLineImages>& dataset );
+LASERLIB_FEATURES_EXPORT void ObjLineImagesDataSet_from_py( PyObject* dataset_py, std::vector<ObjLineImages>& dataset );
 
 
 

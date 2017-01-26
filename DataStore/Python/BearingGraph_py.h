@@ -24,6 +24,7 @@
 #ifndef BEARING_GRAPH_PY
 #define BEARING_GRAPH_PY
 
+#include "../export.h"
 #include <Python.h>
 #include <boost/scoped_ptr.hpp>
 #include <boost/python.hpp>
@@ -31,7 +32,7 @@
 class BearingGraphBuilder;
 
 
-class BearingGraphBuilder_py
+class LASERLIB_DATASTORE_EXPORT BearingGraphBuilder_py
 {
 public:
     BearingGraphBuilder_py( PyObject* db_pyobj, unsigned int maxNumPoints=300000, float wThresh=0.0349 );
@@ -54,9 +55,9 @@ BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(CleanGraph_overloads, CleanGraph, 2, 5)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(CleanGraphFast_overloads, CleanGraphFast, 1, 4)
 
 
-void CalcSurfNorms_py( PyObject* neighs, PyObject* P, PyObject* sn, PyObject* valid );
+LASERLIB_DATASTORE_EXPORT void CalcSurfNorms_py( PyObject* neighs, PyObject* P, PyObject* sn, PyObject* valid );
 
-void BlurSurfNorms_py( PyObject* neighs_py, PyObject* P_py, PyObject* sn_py,
+LASERLIB_DATASTORE_EXPORT void BlurSurfNorms_py( PyObject* neighs_py, PyObject* P_py, PyObject* sn_py,
                       PyObject* valid_py, PyObject* sn_blurred_py, double sd=1.0 );
 
 BOOST_PYTHON_FUNCTION_OVERLOADS(BlurSurfNorms_overloads, BlurSurfNorms_py, 5, 6)

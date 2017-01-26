@@ -31,6 +31,7 @@
 #ifndef CLUSTER_AP_HEADER_GUARD
 #define CLUSTER_AP_HEADER_GUARD
 
+#include "export.h"
 #define EIGEN_DEFAULT_TO_ROW_MAJOR 1
 #include <Eigen/Core>
 #include "Common/ArrayTypes.h"
@@ -40,7 +41,7 @@
 /*!
  * \brief Affinity Propagation
  */
-class ClusterAP : boost::noncopyable
+class LASERLIB_MISC_EXPORT ClusterAP : boost::noncopyable
 {
 public:
     ClusterAP( MapMatXf& sim, bool showProgress=true, float damping=0.9,

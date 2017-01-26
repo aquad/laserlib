@@ -25,6 +25,7 @@
 #ifndef GEOMETRIC_CONSISTENCY_PY
 #define GEOMETRIC_CONSISTENCY_PY
 
+#include "../export.h"
 #include <Python.h>
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 #include <numpy/arrayobject.h>
@@ -33,18 +34,18 @@
 #include <algorithm>
 
 //old functions----
-PyObject* FindConsistentSet_py( PyObject* seeds_py,
+LASERLIB_MISC_EXPORT PyObject* FindConsistentSet_py( PyObject* seeds_py,
                                PyObject* testIds_py, PyObject* testP_py, PyObject* testVect_py,
                                PyObject* trainIds_py, PyObject* trainP_py, PyObject* trainVect_py,
                                PyObject* rmse_py, float distThresh=0.2, float angleThresh=0.5, float rmseWeight=3.0);
 
-PyObject* FindMaxClique_py( PyObject* matches_py,
+LASERLIB_MISC_EXPORT PyObject* FindMaxClique_py( PyObject* matches_py,
                  PyObject* testP_py, PyObject* testVect_py,
                  PyObject* trainP_py, PyObject* trainVect_py,
                  float distThresh, float minDist, float angleThresh, int minCliqueSize, int maxEdges );
 
 
-void FindComponents_py( PyObject* matches_py,
+LASERLIB_MISC_EXPORT void FindComponents_py( PyObject* matches_py,
                  PyObject* testP_py, PyObject* testVect_py,
                  PyObject* trainP_py, PyObject* trainVect_py,
                  float distThresh, float angleThresh, PyObject* components_py );
@@ -54,19 +55,19 @@ void FindComponents_py( PyObject* matches_py,
 
 typedef bron_kerbosch<CorrGraph> bron_kerbosch_corrgraph;
 
-boost::shared_ptr< CorrGraph > BuildCorrGraph_py( PyObject* matches_py,
+LASERLIB_MISC_EXPORT boost::shared_ptr< CorrGraph > BuildCorrGraph_py( PyObject* matches_py,
                      PyObject* testP, PyObject* testVect,
                      PyObject* trainP, PyObject* trainVect,
                      float distThresh, float angleThresh, float minDist );
 
-boost::shared_ptr< CorrGraph > BuildCorrGraphZAligned_py( PyObject* matches_py,
+LASERLIB_MISC_EXPORT boost::shared_ptr< CorrGraph > BuildCorrGraphZAligned_py( PyObject* matches_py,
                      PyObject* testP, PyObject* testVect,
                      PyObject* trainP, PyObject* trainVect,
                      float distThresh, float angleThresh, float minDist );
 
 
 
-class bron_kerbosch_py : public bron_kerbosch_corrgraph
+class LASERLIB_MISC_EXPORT bron_kerbosch_py : public bron_kerbosch_corrgraph
 {
 public:
     bron_kerbosch_py( CorrGraph& g ) : bron_kerbosch_corrgraph(g)
@@ -86,9 +87,9 @@ public:
 };
 
 
-int CorrGraphNumEdges( CorrGraph& g );
+LASERLIB_MISC_EXPORT int CorrGraphNumEdges( CorrGraph& g );
 
 
-PyObject* PairsOneToOne_py( PyObject* matches_py, PyObject* fDist_py );
+LASERLIB_MISC_EXPORT PyObject* PairsOneToOne_py( PyObject* matches_py, PyObject* fDist_py );
 
 #endif //GEOMETRIC_CONSISTENCY_PY

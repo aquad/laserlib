@@ -7,6 +7,46 @@ IF(COMMAND cmake_policy)
  cmake_policy(SET CMP0015 NEW)
 ENDIF(COMMAND cmake_policy)
 
+FIND_PACKAGE( PythonLibs 2.7 REQUIRED )
+FIND_PACKAGE( PythonInterp 2.7 REQUIRED )
+message("Using python version: " ${PYTHON_VERSION_STRING})
+INCLUDE(../CMakeFiles/FindNumpy.cmake)
+FIND_PACKAGE( Boost COMPONENTS filesystem system date_time python REQUIRED)
+IF( NOT BUILD_LaserLib_SHARED )
+  ADD_DEFINITIONS(-DBOOST_PYTHON_STATIC_LIB)
+ENDIF()
+
+EXECUTE_PROCESS( COMMAND ${PYTHON_EXECUTABLE} -c 
+"from distutils.sysconfig import get_python_lib; print(get_python_lib())"
+OUTPUT_VARIABLE PYTHON_DIST_PACKAGES
+OUTPUT_STRIP_TRAILING_WHITESPACE )
+SET( PYTHON_EXTENSION_INSTALL_PATH ${PYTHON_DIST_PACKAGES} CACHE PATH
+"Directory in PYTHONPATH where extensions are installed.")
+
+INCLUDE_DIRECTORIES( ${NUMPY_INCLUDE_DIR} ${PYTHON_INCLUDE_DIRS} )
+
+SET( TARGET_LIBS
+     LaserCommon LaserDataStore LaserFeatures LaserMisc)
+IF( LaserLib_USE_FLANN )
+  SET( TARGET_LIBS
+       ${TARGET_LIBS}
+       ${FLANN_LIBRARY} )
+ENDIF()
+IF( LaserLib_USE_PCL )
+  SET( TARGET_LIBS
+       ${TARGET_LIBS} 
+       LaserPCL ) #${PCL_LIBRARIES} )
+#	${PCL_RANGE_IMAGE_LIBRARIES}
+#	${PCL_KEYPOINTS_LIBRARIES}
+#	${PCL_RANGE_IMAGE_BORDER_EXTRACTOR_LIBRARIES} )
+ENDIF()
+
+IF( LaserLib_USE_FLANN AND LaserLib_USE_PCL )
+    SET( TARGET_LIBS
+         ${TARGET_LIBS}
+         LaserSearch )
+ENDIF()
+
 FILE( GLOB includes ${dir}/*.h)
 FILE( GLOB source ${dir}/*.cpp)
 
@@ -56,7 +96,13 @@ IF( LaserLib_USE_FLANN AND LaserLib_USE_PCL  )
     SOURCE_GROUP( "Search\\Python" FILES ${search_source} ${search_includes} )
 ENDIF( LaserLib_USE_FLANN AND LaserLib_USE_PCL  )
 
+SET( TARGET_LIBS
+     ${TARGET_LIBS}
+     ${PYTHON_LIBRARIES} 
+     ${Boost_PYTHON_LIBRARY})
+
 #needs to be a shared library
+REMOVE_DEFINITIONS(-DLASERLIB_EXPORT_API)
 ADD_LIBRARY( ${TARGET_NAME} SHARED 
     ${includes} ${source}
     ${datastore_includes} ${datastore_source}
@@ -67,33 +113,7 @@ ADD_LIBRARY( ${TARGET_NAME} SHARED
     ${graphics_includes} ${graphics_source} )
 
 SET_TARGET_PROPERTIES( ${TARGET_NAME} PROPERTIES ${LaserLib_LIBRARY_PROPERTIES} )
-#ADD_DEPENDENCIES( ${TARGET_NAME} LaserDataStore LaserFeatures LaserMisc )
-TARGET_LINK_LIBRARIES ( ${TARGET_NAME} 
-	${FLANN_LIBRARY} 
-    LaserCommon LaserDataStore LaserFeatures LaserMisc LaserGraphics)
-
-IF( LaserLib_USE_PCL )
-  TARGET_LINK_LIBRARIES( ${TARGET_NAME} 
-	LaserPCL ) #${PCL_LIBRARIES} )
-#	${PCL_RANGE_IMAGE_LIBRARIES}
-#	${PCL_KEYPOINTS_LIBRARIES}
-#	${PCL_RANGE_IMAGE_BORDER_EXTRACTOR_LIBRARIES} )
-ENDIF()
-
-IF( LaserLib_USE_FLANN AND LaserLib_USE_PCL )
-    TARGET_LINK_LIBRARIES( ${TARGET_NAME} LaserSearch )
-ENDIF()
-
-IF( WIN32 )
-  TARGET_LINK_LIBRARIES( ${TARGET_NAME}
-                         debug libboost_python-vc90-mt-gd-${Boost_VERSION_SUFFIX}.lib
-                         optimized libboost_python-vc90-mt-${Boost_VERSION_SUFFIX}.lib )
-
-ELSE( WIN32 )
-    # this should work everywhere, right?
-    TARGET_LINK_LIBRARIES ( ${TARGET_NAME} ${Boost_PYTHON_LIBRARY} ) 
-ENDIF( WIN32 )
-
+TARGET_LINK_LIBRARIES ( ${TARGET_NAME} ${TARGET_LIBS})
 
 #needed to link properly to LaserDataStore on install
 #SET_TARGET_PROPERTIES( ${TARGET_NAME} PROPERTIES 
@@ -127,7 +147,9 @@ ENDIF()
 
 INSTALL(
     TARGETS ${TARGET_NAME}
-    LIBRARY DESTINATION ${PYTHON_EXTENSION_INSTALL_PATH} COMPONENT Runtime     # .so, mod.dll
+    ARCHIVE DESTINATION ${PYTHON_EXTENSION_INSTALL_PATH}
+    LIBRARY DESTINATION ${PYTHON_EXTENSION_INSTALL_PATH}
+    RUNTIME DESTINATION ${PYTHON_EXTENSION_INSTALL_PATH}
 )
 
 

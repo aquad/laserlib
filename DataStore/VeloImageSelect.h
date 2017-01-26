@@ -26,6 +26,7 @@
 #ifndef VELO_IMAGE_SELECT
 #define VELO_IMAGE_SELECT
 
+#include "export.h"
 #include <vector>
 #include "Selector.h"
 #include "VeloRangeImage.h"
@@ -41,7 +42,7 @@ centre point's depth. An extra pixel on each side is added.
 This can assist in selecting a 3d region plus it's
 surrounding points (for occupancy / interpolation).
 */
-class ImagePlusSelector : public virtual Selector
+class LASERLIB_DATASTORE_EXPORT ImagePlusSelector : public virtual Selector
 {
 public:
     /*! \param w - an array of azimuth angles, rad, dtype=float64
@@ -81,7 +82,7 @@ This method is (probably) faster than a KDTree. First a rectangular region in th
 based on the specified radius and the depth of the centre point. All points in this region are
 checked for 3d distance.
 */
-class ImageSphereSelector : public virtual Selector
+class LASERLIB_DATASTORE_EXPORT ImageSphereSelector : public virtual Selector
 {
 public:
     /*! \param w - an array of azimuth angles, rad, dtype=float64
@@ -142,7 +143,7 @@ inline void ImageSphereSelector::SelectPointsIndexRange( int indexStart, int ind
 /*! Find the point ids in the range image that match a subset 'source'.
   Could just use a KDTree... hopefully this is faster.
 */
-void RangeImageMatch( VeloRangeImage& image, MapVecXll& t, Mat3<double>::type P,
+LASERLIB_DATASTORE_EXPORT void RangeImageMatch( VeloRangeImage& image, MapVecXll& t, Mat3<double>::type P,
         MapVecXuc& srcLid, MapVecXd& srcW, MapVecXll& srcT, Mat3<double>::type srcP,
         MapVecXi& matches );
 

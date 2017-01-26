@@ -84,5 +84,6 @@ private:
     int lastBlock_;
 };
 
+template StreamScanBuffer const volatile * boost::get_pointer(StreamScanBuffer const volatile *);
 
 #endif //STREAM_BUFFER_HEADER_GUARD

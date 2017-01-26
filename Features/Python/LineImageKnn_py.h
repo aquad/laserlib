@@ -24,6 +24,7 @@
 #ifndef LINE_IMAGE_KNN_PY
 #define LINE_IMAGE_KNN_PY
 
+#include "../export.h"
 #include <Python.h>
 #include <numpy/arrayobject.h>
 #include <boost/shared_ptr.hpp>
@@ -35,7 +36,7 @@
 #include "KnnClassifier_py.h"
 
 
-class LineImageKnn_py : public LineImageKnn, public ObjectKnnClassifier_py
+class LASERLIB_FEATURES_EXPORT LineImageKnn_py : public LineImageKnn, public ObjectKnnClassifier_py
 {
 public:
     LineImageKnn_py( LineImageParams& params, int metricNo,
@@ -67,10 +68,11 @@ boost::shared_ptr<LineImageKnn_py> LineImageKnn_py_constructor(
         PyObject* params_py, int metricNo, PyObject* trainData_py,
         float rmseThresh=10.0, float knownThresh=0.4,
         float knownWeight=1.0, bool showProgress=true );
+LASERLIB_FEATURES_EXTERN template LineImageKnn_py const volatile * LASERLIB_FEATURES_IMPORT boost::get_pointer(LineImageKnn_py const volatile *);
 
 
 
-class LineImageKnnAligned_py : public LineImageKnnAligned, public ObjectKnnClassifier_py
+class LASERLIB_FEATURES_EXPORT LineImageKnnAligned_py : public LineImageKnnAligned, public ObjectKnnClassifier_py
 {
 public:
     LineImageKnnAligned_py( LineImageParams& params, int metricNo,
@@ -103,10 +105,11 @@ boost::shared_ptr<LineImageKnnAligned_py> LineImageKnnAligned_py_constructor(
         PyObject* params_py, int metricNo, PyObject* trainData_py,
         float alignThresh, float rmseThresh, float knownThresh,
         float knownWeight, bool showProgress );
+LASERLIB_FEATURES_EXTERN template LineImageKnnAligned_py const volatile * LASERLIB_FEATURES_IMPORT boost::get_pointer(LineImageKnnAligned_py const volatile *);
 
 
 
-class ObjectMatchHistogram_py : public ObjectMatchHistogram
+class LASERLIB_FEATURES_EXPORT ObjectMatchHistogram_py : public ObjectMatchHistogram
 {
 public:
     ObjectMatchHistogram_py( LineImageParams& params, int metricNo,
@@ -123,7 +126,7 @@ public:
 
 
 
-boost::shared_ptr<ObjectMatchHistogram_py> ObjectMatchHistogram_py_constructor(
+LASERLIB_FEATURES_EXPORT boost::shared_ptr<ObjectMatchHistogram_py> ObjectMatchHistogram_py_constructor(
         PyObject* params_py, int metricNo, PyObject* trainData_py,
         float alignThresh, float rmseThresh, float knownThresh,
         float knownWeight, float binWidth, int nBins );

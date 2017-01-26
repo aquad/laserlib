@@ -25,6 +25,7 @@
 #ifndef PCA_HEADER_GUARD
 #define PCA_HEADER_GUARD
 
+#include "export.h"
 //Eigen
 #define EIGEN_DEFAULT_TO_ROW_MAJOR 1
 #include <Eigen/Dense>
@@ -47,7 +48,7 @@ typedef Eigen::Map< Eigen::Matrix< float, 3, 3, Eigen::RowMajor > > MapMat3f;
 
 
 //! Computes PCA on a set of points in a pointcloud
-class PCA
+class LASERLIB_FEATURES_EXPORT PCA
 {
 public:
     //! \param P - raw pointcloud to compute PCA on
@@ -65,7 +66,7 @@ The selection must include a neighbouring horizontal and vertical point
 (if they exist- valid to compute PCA on a pole with no horizontal neighbours).
 This uses the 'bearing graph' (see Datastore/BearingGraph).
 */
-void minRadiusSelection( Graph& graph, Mat3<double>::type& P, Vect<float>::type& rad, Vect<bool>::type& valid );
+LASERLIB_FEATURES_EXPORT void minRadiusSelection( Graph& graph, Mat3<double>::type& P, Vect<float>::type& rad, Vect<bool>::type& valid );
 
 
 /*! \brief Compute surface normals with PCA

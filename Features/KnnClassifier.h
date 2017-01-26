@@ -31,6 +31,7 @@
 #ifndef KNN_CLASSIFIER_HEADER_GUARD
 #define KNN_CLASSIFIER_HEADER_GUARD
 
+#include "export.h"
 //Eigen
 #define EIGEN_DEFAULT_TO_ROW_MAJOR 1
 #include <Eigen/Core>
@@ -40,7 +41,7 @@
 
 
 //! Base class, provide your own compare function.
-class KnnClassifier
+class LASERLIB_FEATURES_EXPORT KnnClassifier
 {
 public:
     KnnClassifier( bool showProgress=false, int nThreads=1 )
@@ -69,7 +70,7 @@ private:
 
 /* Due to multiple inheritance issues, first define this interface class.
  */
-class ObjectKnnClassifierInterface
+class LASERLIB_FEATURES_EXPORT ObjectKnnClassifierInterface
 {
 public:
     ObjectKnnClassifierInterface() {}
@@ -98,7 +99,7 @@ for each object in a vector of arrays.
 This is still a virtual base class- define your own distance measure, and add
 functions/members which store the relevant training/testing data.
 */
-class ObjectKnnClassifier : virtual public ObjectKnnClassifierInterface
+class LASERLIB_FEATURES_EXPORT ObjectKnnClassifier : virtual public ObjectKnnClassifierInterface
 {
 public:
     ObjectKnnClassifier( int nTrainObjs, std::vector<int>& nTrainPts, bool showProgress=false )

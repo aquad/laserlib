@@ -23,9 +23,10 @@
 #ifndef CLUSTER_K_MEANS_HEADER_GUARD
 #define CLUSTER_K_MEANS_HEADER_GUARD
 
+#include "export.h"
 #include <Eigen/Core>
 #include "Common/ArrayTypes.h"
 
-void ClusterKMeans( MapMatXf& data, int nClusters, Vect<int>::type& ids, int nIters );
+LASERLIB_MISC_EXPORT void ClusterKMeans( MapMatXf& data, int nClusters, Vect<int>::type& ids, int nIters );
 
 #endif //CLUSTER_K_MEANS_HEADER_GUARD
